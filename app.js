@@ -35,7 +35,7 @@ function handleStartRecognition(event) {
     const results = Array.from(event.results).map((item) => item[0].transcript);
 
     console.log(results);
-    transcript.innerHTML = results;
+    transcript.textContent = results;
   });
 
   recognition.start();
@@ -47,12 +47,12 @@ function handleStopRecognition(event) {
 }
 
 function handleClearTranscript(event) {
-  transcript.innerHTML = '';
+  transcript.textContent = '';
 }
 
 function handlePlaySpeech(event) {
   console.log('speech synthesis');
 
-  let utterance = new SpeechSynthesisUtterance(transcript.innerHTML);
+  let utterance = new SpeechSynthesisUtterance(transcript.textContent);
   synthesis.speak(utterance);
 }
