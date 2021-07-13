@@ -32,7 +32,9 @@ function handleStartRecognition(event) {
   });
 
   recognition.addEventListener('result', (event) => {
-    const results = Array.from(event.results).map((item) => item[0].transcript);
+    const results = Array.from(event.results)
+      .map((item) => item[0].transcript)
+      .join('');
 
     console.log(results);
     transcript.textContent = results;
