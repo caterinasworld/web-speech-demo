@@ -7,7 +7,7 @@ window.SpeechRecognition =
 
 // Create new instance - speech recognition
 const recognition = new SpeechRecognition();
-// recognition.interimResults = true;
+recognition.interimResults = true;
 recognition.continuous = true;
 recognition.lang = 'en-US';
 
@@ -27,10 +27,12 @@ playSpeech.addEventListener('click', handlePlaySpeech);
 function handleStartRecognition(event) {
   console.log('start speech recognition');
 
+  recognition.addEventListener('error', (event) => {
+    console.log('an error occurred');
+  });
+
   recognition.addEventListener('result', (event) => {
-    const results = Array.from(event.results)
-      .map((result) => result[0].transcript)
-      .join('');
+    const results = Array.from(event.results).map((item) => item[0].transcript);
 
     console.log(results);
     transcript.innerHTML = results;
